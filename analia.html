@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cuenta regresiva</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      font-size: 24px;
+    }
+
+    .countdown span {
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cuánto falta para que Analía llegue</h1>
+  <div class="countdown">
+    <span id="days"></span>
+    <span id="hours"></span>
+    <span id="minutes"></span>
+    <span id="seconds"></span>
+  </div>
+
+  <script>
+    // Obtiene la fecha y hora actual
+    const currentDate = new Date();
+
+    // Establece la fecha y hora objetivo (21 de julio de 2023 a las 16:00 horas)
+    const targetDate = new Date("2023-07-21T16:00:00");
+
+    // Calcula la diferencia entre las dos fechas
+    const timeDifference = targetDate - currentDate;
+
+    // Actualiza el contador cada segundo
+    setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
+      // Obtiene la fecha y hora actualizada
+      const updatedDate = new Date();
+
+      // Calcula la diferencia actualizada entre las dos fechas
+      const updatedTimeDifference = targetDate - updatedDate;
+
+      // Calcula los días, horas, minutos y segundos restantes
+      const days = Math.floor(updatedTimeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((updatedTimeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((updatedTimeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((updatedTimeDifference % (1000 * 60)) / 1000);
+
+      // Actualiza los elementos HTML con los valores correspondientes
+      document.getElementById("days").innerHTML = days + " días ";
+      document.getElementById("hours").innerHTML = hours + " horas ";
+      document.getElementById("minutes").innerHTML = minutes + " minutos ";
+      document.getElementById("seconds").innerHTML = seconds + " segundos";
+    }
+  </script>
+</body>
+</html>
